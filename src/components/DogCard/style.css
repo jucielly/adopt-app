@@ -1,0 +1,22 @@
+.dog-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  background-color: var(--card-background);
+  border-radius: 5px;
+  box-shadow: var(--box-shadow);
+  width: 200px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.dog-card-info, .dog-card-title{
+  padding: 10px;
+  margin: 10px;
+}
+
+
+.card-logo{
+  width: 10%;
+  height: 10%;
+}
