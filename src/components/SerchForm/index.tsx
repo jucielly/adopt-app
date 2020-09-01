@@ -49,9 +49,9 @@ function Navbar() {
           value={breed}
           onChange={handleChange}
         >
-          <MenuItem value="1">sub-raça1</MenuItem>
-          <MenuItem value="2">sub-raça2</MenuItem>
-          <MenuItem value="3">sub-raça3</MenuItem>
+          <MenuItem value="1">raça1</MenuItem>
+          <MenuItem value="2">raça2</MenuItem>
+          <MenuItem value="3">raça3</MenuItem>
         </Select>
 
       </FormControl>
