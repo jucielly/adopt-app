@@ -4,12 +4,12 @@ import './style.css';
 
 function Navbar() {
   return (
-    <header className="nav-container">
-      <nav>
-        <h1>Adote um Aumigo!</h1>
-        <img src={Logo} alt="dog logo" className="nav-logo" />
-      </nav>
-    </header>
+
+    <nav className="nav-container">
+      <h1 className="nav-title">Adote um Aumigo!</h1>
+      <img src={Logo} alt="dog logo" className="nav-logo" />
+    </nav>
+
   );
 }
 
