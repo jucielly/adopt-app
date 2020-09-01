@@ -1,0 +1,20 @@
+.search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--box-shadow);
+}
+.form-btn {
+  background-color: var(--secundary);
+  color: var(--default);
+  width: 10%;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: var(--box-shadow);
+  transition: 0.3s;
+}
+
+.form-btn:hover {
+  background-color: var(--secundary-hover);
+}

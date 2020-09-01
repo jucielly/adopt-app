@@ -4,6 +4,9 @@
   padding: 1em;
   justify-content: center;
   background-color: var(--primary);
+  box-shadow: var(--box-shadow);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 
