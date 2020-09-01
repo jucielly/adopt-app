@@ -11,13 +11,13 @@
 .nav-title {
   color: var(--default);
   font-family: "Indie Flower", cursive;
-  font-size: 4.5em;
+  font-size: 3em;
   margin-right: 20px;
 }
 
 
 
 .nav-logo {
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
 }
