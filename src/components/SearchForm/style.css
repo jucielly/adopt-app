@@ -1,7 +1,7 @@
 .search-form {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   box-shadow: var(--box-shadow);
   flex-wrap: wrap;
 }
@@ -16,6 +16,7 @@
   box-shadow: var(--box-shadow);
   text-transform: uppercase;
   transition: 0.3s;
+  align-self: center;
 }
 
 .form-btn:hover {

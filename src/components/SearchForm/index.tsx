@@ -1,11 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios"
 import './style.css';
+import { useForm, Controller } from "react-hook-form"
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from "@material-ui/core/FormHelperText"
+
+type Breeds = Record<string, string[]>
+type FormValues = {
+  breed: string
+  subBreed: string
+  gender: string
+  age: number
+}
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -17,9 +27,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-type Breeds = Record<string, string[]>
+
+let ages: number[] = []
+for (let i = 1; i <= 15; i++) {
+  ages.push(i)
+}
+
+const genders: string[] = ["Fêmea", "Macho"]
+
 const SearchForm = () => {
   const classes = useStyles();
+  const { control, handleSubmit, watch, errors } = useForm<FormValues>()
 
   const [breeds, setBreeds] = useState<Breeds>({})
   useEffect(() => {
@@ -34,108 +52,89 @@ const SearchForm = () => {
 
   const [subBreeds, setSubBreeds] = useState<string[]>([])
 
-
-
-  const [age, setAge] = useState<number | undefined>()
-  const handleAgeChange = (event: React.ChangeEvent<{ value: unknown }>) => setAge(event.target.value as number)
-  let ages: number[] = []
-  for (let i = 1; i <= 15; i++) {
-    ages.push(i)
-  }
-
-  const [breed, setBreed] = useState<string | undefined>()
-  const handleBreedChange = (event: React.ChangeEvent<{ value: unknown }>) => setBreed(event.target.value as string)
-
-  const [subBreed, setSubBreed] = useState<string | undefined>()
-  const handleSubBreedChange = (event: React.ChangeEvent<{ value: unknown }>) => setSubBreed(event.target.value as string)
-
-
-  const [gender, setGender] = useState<string | undefined>()
-  const handleGenderChange = (event: React.ChangeEvent<{ value: unknown }>) => setGender(event.target.value as string)
-  const genders: string[] = ["Fêmea", "Macho"]
-
+  const selectedBreed = watch("breed")
 
   useEffect(() => {
-    setSubBreed(undefined)
-    setSubBreeds(breeds[breed || ""] || [])
-  }, [breed])
+    setSubBreeds(breeds[selectedBreed] || [])
+  }, [selectedBreed])
 
+
+
+  const onSubmit = (data: FormValues) => console.log(data)
 
   return (
-    <div className="search-form">
+    <form className="search-form" onSubmit={handleSubmit(onSubmit)}>
       <div className="search-form-item">
-        <FormControl className={classes.formControl}>
+        <FormControl className={classes.formControl} error={!!errors.breed}>
           <InputLabel id="dog-breed-label">Raça</InputLabel>
-          <Select
-            labelId="dog-breed-label"
-            id="dog-breed"
-            value={breed}
-            onChange={handleBreedChange}
-
-          >
-            {Object.keys(breeds).map((breed, index) => <MenuItem value={breed} key={index}>{breed}</MenuItem>)}
-
-
-          </Select>
-
-        </FormControl>
-
-      </div>
-
-      <div className="search-form-item">
-        <FormControl className={classes.formControl}>
-          <InputLabel id="dog-breed-label">sub-raça</InputLabel>
-          <Select
-            labelId="dog-breed-label"
-            id="dog-breed"
-            value={subBreed}
-            onChange={handleSubBreedChange}
-          >
-
-            {subBreeds.map((subBreed, index) => <MenuItem value={subBreed} key={index}>{subBreed}</MenuItem>)}
-
-
-          </Select>
+          <Controller
+            name="breed"
+            control={control}
+            defaultValue=""
+            rules={{ required: "Escolha um" }}
+            render={props => <Select
+              labelId="dog-breed-label"
+              id="dog-breed"
+              {...props}>
+              {Object.keys(breeds).map((breed, index) => <MenuItem value={breed} key={index}>{breed}</MenuItem>)}
+            </Select>}
+          />
+         {errors.breed && <FormHelperText>{errors.breed?.message}</FormHelperText>}
 
         </FormControl>
       </div>
 
       <div className="search-form-item">
         <FormControl className={classes.formControl}>
-          <InputLabel id="dog-breed-label">sexo</InputLabel>
-          <Select
-            labelId="dog-breed-label"
-            id="dog-breed"
-            value={gender}
-            onChange={handleGenderChange}
-          >
-            {genders.map((gender, index) => <MenuItem value={gender} key={index}>{gender}</MenuItem>)}
+          <InputLabel id="dog-sub-breed-label">sub-raça</InputLabel>
+          <Controller
+            name="subBreed"
+            control={control}
+            defaultValue=""
+            render={props => <Select
+              labelId="dog-sub-breed-label"
+              id="dog-sub-breed"
+              {...props}>
+              {subBreeds.map((subBreed, index) => <MenuItem value={subBreed} key={index}>{subBreed}</MenuItem>)}
+            </Select>} />
+        </FormControl>
+      </div>
 
-
-          </Select>
+      <div className="search-form-item">
+        <FormControl className={classes.formControl}>
+          <InputLabel id="dog-gender-label">sexo</InputLabel>
+          <Controller
+            name="gender"
+            control={control}
+            defaultValue=""
+            render={props => <Select
+              labelId="dog-gender-label"
+              id="dog-gender"
+              {...props}>
+              {genders.map((gender, index) => <MenuItem value={gender} key={index}>{gender}</MenuItem>)}
+            </Select>} />
 
         </FormControl>
       </div>
 
       <div className="search-form-item">
         <FormControl className={classes.formControl}>
-          <InputLabel id="dog-breed-label">idade</InputLabel>
-          <Select
-            labelId="dog-breed-label"
-            id="dog-breed"
-            value={age}
-            onChange={handleAgeChange}
-          >
-            {ages.map((age, index) => <MenuItem value={age} key={index}>{age}</MenuItem>)}
-
-
-          </Select>
-
+          <InputLabel id="dog-age-label">idade</InputLabel>
+          <Controller
+            name="age"
+            control={control}
+            defaultValue=""
+            render={props => <Select
+              labelId="dog-age-label"
+              id="dog-age"
+              {...props}>
+              {ages.map((age, index) => <MenuItem value={age} key={index}>{age}</MenuItem>)}
+            </Select>} />
         </FormControl>
       </div>
 
-      <input type="submit" className="form-btn" value="pesquisar"/>
-    </div >
+      <input type="submit" className="form-btn" value="pesquisar" />
+    </form>
 
   );
 }
