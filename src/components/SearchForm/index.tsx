@@ -134,7 +134,7 @@ const SearchForm = () => {
         </FormControl>
       </div>
 
-      <button type="submit" className="form-btn">pesquisar</button>
+      <input type="submit" className="form-btn" value="pesquisar"/>
     </div >
 
   );
