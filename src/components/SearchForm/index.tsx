@@ -19,19 +19,9 @@ const useStyles = makeStyles((theme) => ({
 
 type Breeds = Record<string, string[]>
 const SearchForm = () => {
-
   const classes = useStyles();
 
   const [breeds, setBreeds] = useState<Breeds>({})
-
-  const [age, setAge] = useState<number | undefined>()
-  let ages: number[] = []
-  for (let i = 1; i <= 15; i++) {
-    ages.push(i)
-  }
-
-  const handleAgeChange = (event: React.ChangeEvent<{ value: unknown }>) => setAge(event.target.value as number)
-
   useEffect(() => {
     const fetchBreeds = async () => {
       const result = await axios("https://dog.ceo/api/breeds/list/all")
@@ -42,6 +32,35 @@ const SearchForm = () => {
     fetchBreeds()
   }, [])
 
+  const [subBreeds, setSubBreeds] = useState<string[]>([])
+
+
+
+  const [age, setAge] = useState<number | undefined>()
+  const handleAgeChange = (event: React.ChangeEvent<{ value: unknown }>) => setAge(event.target.value as number)
+  let ages: number[] = []
+  for (let i = 1; i <= 15; i++) {
+    ages.push(i)
+  }
+
+  const [breed, setBreed] = useState<string | undefined>()
+  const handleBreedChange = (event: React.ChangeEvent<{ value: unknown }>) => setBreed(event.target.value as string)
+
+  const [subBreed, setSubBreed] = useState<string | undefined>()
+  const handleSubBreedChange = (event: React.ChangeEvent<{ value: unknown }>) => setSubBreed(event.target.value as string)
+
+
+  const [gender, setGender] = useState<string | undefined>()
+  const handleGenderChange = (event: React.ChangeEvent<{ value: unknown }>) => setGender(event.target.value as string)
+  const genders: string[] = ["Fêmea", "Macho"]
+
+
+  useEffect(() => {
+    setSubBreed(undefined)
+    setSubBreeds(breeds[breed || ""] || [])
+  }, [breed])
+
+
   return (
     <div className="search-form">
       <div className="search-form-item">
@@ -50,6 +69,8 @@ const SearchForm = () => {
           <Select
             labelId="dog-breed-label"
             id="dog-breed"
+            value={breed}
+            onChange={handleBreedChange}
 
           >
             {Object.keys(breeds).map((breed, index) => <MenuItem value={breed} key={index}>{breed}</MenuItem>)}
@@ -67,11 +88,13 @@ const SearchForm = () => {
           <Select
             labelId="dog-breed-label"
             id="dog-breed"
-
+            value={subBreed}
+            onChange={handleSubBreedChange}
           >
-            <MenuItem value="1">raça1</MenuItem>
-            <MenuItem value="2">raça2</MenuItem>
-            <MenuItem value="3">raça3</MenuItem>
+
+            {subBreeds.map((subBreed, index) => <MenuItem value={subBreed} key={index}>{subBreed}</MenuItem>)}
+
+
           </Select>
 
         </FormControl>
@@ -83,9 +106,12 @@ const SearchForm = () => {
           <Select
             labelId="dog-breed-label"
             id="dog-breed"
+            value={gender}
+            onChange={handleGenderChange}
           >
-            <MenuItem value="1">macho</MenuItem>
-            <MenuItem value="2">femea</MenuItem>
+            {genders.map((gender, index) => <MenuItem value={gender} key={index}>{gender}</MenuItem>)}
+
+
           </Select>
 
         </FormControl>
