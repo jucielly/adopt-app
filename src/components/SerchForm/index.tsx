@@ -9,7 +9,7 @@ import FormControl from '@material-ui/core/FormControl';
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(3),
-    minWidth: 120,
+    width: `calc(100% - ${theme.spacing(3) * 2}px)`,
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -26,63 +26,73 @@ function Navbar() {
 
   return (
     <div className="search-form">
-      <FormControl className={classes.formControl}>
-        <InputLabel id="dog-breed-label">Raça</InputLabel>
-        <Select
-          labelId="dog-breed-label"
-          id="dog-breed"
-          value={breed}
-          onChange={handleChange}
-        >
-          <MenuItem value="1">raça1</MenuItem>
-          <MenuItem value="2">raça2</MenuItem>
-          <MenuItem value="3">raça3</MenuItem>
-        </Select>
+      <div className="search-form-item">
+        <FormControl className={classes.formControl}>
+          <InputLabel id="dog-breed-label">Raça</InputLabel>
+          <Select
+            labelId="dog-breed-label"
+            id="dog-breed"
+            value={breed}
+            onChange={handleChange}
+          >
+            <MenuItem value="1">raça1</MenuItem>
+            <MenuItem value="2">raça2</MenuItem>
+            <MenuItem value="3">raça3</MenuItem>
+          </Select>
 
-      </FormControl>
+        </FormControl>
 
-      <FormControl className={classes.formControl}>
-        <InputLabel id="dog-breed-label">sub-raça</InputLabel>
-        <Select
-          labelId="dog-breed-label"
-          id="dog-breed"
-          value={breed}
-          onChange={handleChange}
-        >
-          <MenuItem value="1">raça1</MenuItem>
-          <MenuItem value="2">raça2</MenuItem>
-          <MenuItem value="3">raça3</MenuItem>
-        </Select>
+      </div>
 
-      </FormControl>
+      <div className="search-form-item">
+        <FormControl className={classes.formControl}>
+          <InputLabel id="dog-breed-label">sub-raça</InputLabel>
+          <Select
+            labelId="dog-breed-label"
+            id="dog-breed"
+            value={breed}
+            onChange={handleChange}
+          >
+            <MenuItem value="1">raça1</MenuItem>
+            <MenuItem value="2">raça2</MenuItem>
+            <MenuItem value="3">raça3</MenuItem>
+          </Select>
 
-      <FormControl className={classes.formControl}>
-        <InputLabel id="dog-breed-label">sexo</InputLabel>
-        <Select
-          labelId="dog-breed-label"
-          id="dog-breed"
-          value={breed}
-          onChange={handleChange}
-        >
-          <MenuItem value="1">macho</MenuItem>
-          <MenuItem value="2">femea</MenuItem>
-        </Select>
+        </FormControl>
+      </div>
 
-      </FormControl>
+      <div  className="search-form-item">
+        <FormControl className={classes.formControl}>
+          <InputLabel id="dog-breed-label">sexo</InputLabel>
+          <Select
+            labelId="dog-breed-label"
+            id="dog-breed"
+            value={breed}
+            onChange={handleChange}
+          >
+            <MenuItem value="1">macho</MenuItem>
+            <MenuItem value="2">femea</MenuItem>
+          </Select>
 
-      <FormControl className={classes.formControl}>
-        <InputLabel id="dog-breed-label">idade</InputLabel>
-        <Select
-          labelId="dog-breed-label"
-          id="dog-breed"
-          value={breed}
-          onChange={handleChange}
-        >
-          <MenuItem value="1">1</MenuItem>
-          <MenuItem value="2">2</MenuItem>
-        </Select>
+        </FormControl>
+      </div>
 
-      </FormControl>
+      <div  className="search-form-item">
+        <FormControl className={classes.formControl}>
+          <InputLabel id="dog-breed-label">idade</InputLabel>
+          <Select
+            labelId="dog-breed-label"
+            id="dog-breed"
+            value={breed}
+            onChange={handleChange}
+          >
+            <MenuItem value="1">1</MenuItem>
+            <MenuItem value="2">2</MenuItem>
+          </Select>
+
+        </FormControl>
+      </div>
+
       <button type="submit" className="form-btn">pesquisar</button>
     </div>
 

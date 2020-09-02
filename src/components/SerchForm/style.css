@@ -22,6 +22,10 @@
   background-color: var(--secundary-hover);
 }
 
+.search-form-item{
+  width: 15%;
+}
+
 /*mobile*/
 
 @media (max-width: 1024px){
@@ -36,5 +40,9 @@
   }
   .form-btn{
     width: 80%;
+  }
+
+  .search-form-item{
+    width: 100%;
   }
 }
