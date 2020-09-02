@@ -19,11 +19,16 @@ const useStyles = makeStyles((theme) => ({
 
 type Breeds = Record<string, string[]>
 const SearchForm = () => {
+
   const classes = useStyles();
 
   const [breeds, setBreeds] = useState<Breeds>({})
 
   const [age, setAge] = useState<number | undefined>()
+  let ages: number[] = []
+  for (let i = 1; i <= 15; i++) {
+    ages.push(i)
+  }
 
   const handleAgeChange = (event: React.ChangeEvent<{ value: unknown }>) => setAge(event.target.value as number)
 
@@ -95,8 +100,9 @@ const SearchForm = () => {
             value={age}
             onChange={handleAgeChange}
           >
-            <MenuItem value="1">1</MenuItem>
-            <MenuItem value="2">2</MenuItem>
+            {ages.map((age, index) => <MenuItem value={age} key={index}>{age}</MenuItem>)}
+
+
           </Select>
 
         </FormControl>
