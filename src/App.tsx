@@ -24,7 +24,28 @@ function App() {
           subBreed: "apso",
           gender: "female",
           age: 1
-        }]}/>
+        },
+        {
+          name:"julia",
+          breed: "lhasa",
+          subBreed: "apso",
+          gender: "female",
+          age: 1
+        },
+        {
+          name:"julia",
+          breed: "lhasa",
+          subBreed: "apso",
+          gender: "female",
+          age: 1
+        },
+        {
+          name:"julia",
+          breed: "lhasa",
+          subBreed: "apso",
+          gender: "female",
+          age: 1
+        },]}/>
       </main>
 
     </>
