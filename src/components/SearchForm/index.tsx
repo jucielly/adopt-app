@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from "axios"
 import './style.css';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -16,13 +17,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Navbar() {
+type Breeds = Record<string, string[]>
+const SearchForm = () => {
   const classes = useStyles();
-  const [breed, setAge] = React.useState('');
 
-  const handleChange = (event: any) => {
-    setAge(event.target.value);
-  };
+  const [breeds, setBreeds] = useState<Breeds>({})
+
+  const [age, setAge] = useState<number | undefined>()
+
+  const handleAgeChange = (event: React.ChangeEvent<{ value: unknown }>) => setAge(event.target.value as number)
+
+  useEffect(() => {
+    const fetchBreeds = async () => {
+      const result = await axios("https://dog.ceo/api/breeds/list/all")
+      setBreeds(
+        result.data.message
+      )
+    }
+    fetchBreeds()
+  }, [])
 
   return (
     <div className="search-form">
@@ -32,12 +45,11 @@ function Navbar() {
           <Select
             labelId="dog-breed-label"
             id="dog-breed"
-            value={breed}
-            onChange={handleChange}
+
           >
-            <MenuItem value="1">raça1</MenuItem>
-            <MenuItem value="2">raça2</MenuItem>
-            <MenuItem value="3">raça3</MenuItem>
+            {Object.keys(breeds).map((breed, index) => <MenuItem value={breed} key={index}>{breed}</MenuItem>)}
+
+
           </Select>
 
         </FormControl>
@@ -50,8 +62,7 @@ function Navbar() {
           <Select
             labelId="dog-breed-label"
             id="dog-breed"
-            value={breed}
-            onChange={handleChange}
+
           >
             <MenuItem value="1">raça1</MenuItem>
             <MenuItem value="2">raça2</MenuItem>
@@ -61,14 +72,12 @@ function Navbar() {
         </FormControl>
       </div>
 
-      <div  className="search-form-item">
+      <div className="search-form-item">
         <FormControl className={classes.formControl}>
           <InputLabel id="dog-breed-label">sexo</InputLabel>
           <Select
             labelId="dog-breed-label"
             id="dog-breed"
-            value={breed}
-            onChange={handleChange}
           >
             <MenuItem value="1">macho</MenuItem>
             <MenuItem value="2">femea</MenuItem>
@@ -77,14 +86,14 @@ function Navbar() {
         </FormControl>
       </div>
 
-      <div  className="search-form-item">
+      <div className="search-form-item">
         <FormControl className={classes.formControl}>
           <InputLabel id="dog-breed-label">idade</InputLabel>
           <Select
             labelId="dog-breed-label"
             id="dog-breed"
-            value={breed}
-            onChange={handleChange}
+            value={age}
+            onChange={handleAgeChange}
           >
             <MenuItem value="1">1</MenuItem>
             <MenuItem value="2">2</MenuItem>
@@ -94,9 +103,9 @@ function Navbar() {
       </div>
 
       <button type="submit" className="form-btn">pesquisar</button>
-    </div>
+    </div >
 
   );
 }
 
-export default Navbar;
+export default SearchForm;
