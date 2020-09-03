@@ -7,8 +7,9 @@
   background-color: var(--card-background);
   border-radius: 3px;
   box-shadow: var(--box-shadow);
-  width: 200px;
+  width: 300px;
   font-family: 'Roboto', sans-serif;
+
 }
 
 .dog-card:hover{
@@ -23,8 +24,8 @@
 
 
 .card-logo{
-  width: 10%;
-  height: 10%;
+  width: 80%;
+  height: 40%;
 }
 
 
