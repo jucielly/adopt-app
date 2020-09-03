@@ -2,7 +2,7 @@ import React from 'react';
 import Logo from '../../assets/logo.svg';
 import './style.css';
 
-function Navbar() {
+const Navbar = () => {
   return (
 
     <nav className="nav-container">

@@ -11,8 +11,6 @@
   flex-wrap: wrap;
 }
 
-
-
 .nav-title {
   color: var(--default);
   font-family: "Indie Flower", cursive;
@@ -20,9 +18,17 @@
   margin-right: 20px;
 }
 
-
-
 .nav-logo {
   width: 5%;
   height: 5%;
+}
+
+@media (max-width: 425px) {
+  .nav-title {
+    font-size: 2em;
+  }
+
+  .nav-logo {
+    visibility: hidden;
+  }
 }
