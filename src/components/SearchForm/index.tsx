@@ -65,10 +65,11 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
 
   const selectedBreed = watch("breed")
 
+
   useEffect(() => {
     setValue("subBreed", undefined)
     setSubBreeds(breeds[selectedBreed] || [])
-  }, [selectedBreed])
+  }, [selectedBreed, breeds])
 
   const [xp, setXp] = useState(0)
 
@@ -105,7 +106,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
 
       <div className="search-form-item">
         <FormControl className={classes.formControl}>
-          <InputLabel id="dog-sub-breed-label">sub-raça</InputLabel>
+          <InputLabel id="dog-sub-breed-label">Sub-raça</InputLabel>
           <Controller
             name="subBreed"
             control={control}
@@ -122,7 +123,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
 
       <div className="search-form-item">
         <FormControl className={classes.formControl}>
-          <InputLabel id="dog-gender-label">sexo</InputLabel>
+          <InputLabel id="dog-gender-label">Sexo</InputLabel>
           <Controller
             name="gender"
             control={control}
@@ -140,7 +141,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
 
       <div className="search-form-item">
         <FormControl className={classes.formControl}>
-          <InputLabel id="dog-age-label">idade</InputLabel>
+          <InputLabel id="dog-age-label">Idade</InputLabel>
           <Controller
             name="age"
             control={control}

@@ -16,7 +16,7 @@
   cursor: pointer;
 }
 
-.fa-paw {
+.fas{
   margin: 5px;
 }
 
@@ -24,19 +24,23 @@
   font-weight: bold;
   font-size: large;
   border-bottom: 1px solid var(--details);
+  text-transform: uppercase;
 }
 
 .dog-card-info,
 .dog-card-title {
-  padding: 10px;
   margin: .5em;
-  text-transform: uppercase;
   letter-spacing: .5px;
+  font-size: large;
+}
+
+.dog-card-info:last-child{
+  margin-bottom: 2em;
 }
 
 .card-logo {
   width: 80%;
-  height: 40%;
+  height: 200px;
 }
 
 @keyframes bounce {

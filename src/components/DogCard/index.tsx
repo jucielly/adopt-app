@@ -14,8 +14,19 @@ export type Dog = {
   image?: string
 }
 
+
 type DogCardProps = {
   dog: Dog
+}
+
+const genders = {
+  male: "macho",
+  female: "fêmea"
+}
+
+const genderIcons = {
+  male: <i className="fas fa-mars"></i>,
+  female: <i className="fas fa-venus"></i>
 }
 
 const DogCard: React.FC<DogCardProps> = ({ dog }) => {
@@ -36,9 +47,8 @@ const DogCard: React.FC<DogCardProps> = ({ dog }) => {
     <div className="dog-card">
       <h3 className="dog-card-title"><i className="fas fa-paw"></i>{name}</h3>
       <img src={image || Logo} alt="doggo" className="card-logo" />
-      <p className="dog-card-info">{breed}</p>
-      <p className="dog-card-info">{subBreed || "não há sub-raça"}</p>
-      <p className="dog-card-info">{gender}</p>
+      <p className="dog-card-info">Raça: {breed} {subBreed && `| ${subBreed}`}</p>
+      <p className="dog-card-info">{genderIcons[gender]}{genders[gender]}</p>
       <p className="dog-card-info">{age} anos</p>
     </div>
 
