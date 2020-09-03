@@ -20,7 +20,7 @@ type DogCardProps = {
 
 const DogCard: React.FC<DogCardProps> = ({ dog }) => {
   const {
-    name, breed, subBreed, gender, age,id
+    name, breed, subBreed, gender, age, id
   } = dog;
 
   const [image, setImage] = useState<string>()
@@ -34,7 +34,7 @@ const DogCard: React.FC<DogCardProps> = ({ dog }) => {
   return (
 
     <div className="dog-card">
-      <h3 className="dog-card-title">{name}</h3>
+      <h3 className="dog-card-title"><i className="fas fa-paw"></i>{name}</h3>
       <img src={image || Logo} alt="doggo" className="card-logo" />
       <p className="dog-card-info">{breed}</p>
       <p className="dog-card-info">{subBreed || "não há sub-raça"}</p>

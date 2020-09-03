@@ -51,7 +51,9 @@ const genders: string[] = ["Fêmea", "Macho"]
 
 const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
   const classes = useStyles();
-  const { control, handleSubmit, watch, errors } = useForm<FormValues>()
+  const { control, handleSubmit, watch, errors } = useForm<FormValues>({
+    defaultValues: JSON.parse(localStorage.getItem("formValues") || "{}") as FormValues
+  })
 
   const [breeds, setBreeds] = useState<Breeds>({})
   useEffect(() => {
@@ -73,6 +75,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
 
   useEffect(() => {
     setXp(getSearchXp(watchAllFields))
+    localStorage.setItem("formValues", JSON.stringify(watchAllFields))
   }, [watchAllFields])
 
 
