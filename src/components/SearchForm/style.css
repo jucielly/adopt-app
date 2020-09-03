@@ -8,7 +8,7 @@
 .form-btn {
   background-color: var(--secundary);
   color: var(--default);
-  width: 10%;
+  width: fit-content;
   margin: 10px;
   padding: 10px 20px ;
   border: none;
@@ -34,6 +34,16 @@
    width: 20%;
  }
 }
+
+@media (max-width: 768px){
+ .search-form-item{
+   width: 50%;
+ }
+
+  .form-btn{
+    width: 50%;
+  }
+ }
 
 @media (max-width: 425px){
   .search-form{
