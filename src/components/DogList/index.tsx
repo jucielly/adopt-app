@@ -11,7 +11,7 @@ const DogList: React.FC<DogListProps> = ({ dogs }) => (
 
   <section className="dog-list">
     {
-      dogs.map((dog, index) => <DogCard dog={dog} key={index} />)
+      dogs.map((dog, index) => <DogCard dog={dog} key={index} />, console.log("foi"))
     }
 
   </section>
