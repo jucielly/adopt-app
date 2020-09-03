@@ -38,10 +38,12 @@
 @media (max-width: 768px){
  .search-form-item{
    width: 50%;
+
  }
 
   .form-btn{
     width: 50%;
+    margin-bottom: 20px;
   }
  }
 

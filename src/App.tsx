@@ -14,7 +14,7 @@ const App: React.FC = () => {
 
   const [dogs, setDogs] = useState<Dog[]>([])
 
-  const [hasSearch, setHasSearch] = useState(true)
+  const [hasSearch, setHasSearch] = useState(false)
 
   const handleSearch = (values: FormValues) => {
     setHasSearch(true)
