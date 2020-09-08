@@ -12,7 +12,7 @@ A simple application in react that simulates an adoption application
 
 - `/assets` all assets useds and defaults css
 - `/components` All  Reacts Components
-- `/consts` All apis entrypoint
+- `/consts` All apis endpoints
 - `/App.tsx` Where all Providers are used as well as main page
 - `/index.tsx` React entrypoinyt
 
